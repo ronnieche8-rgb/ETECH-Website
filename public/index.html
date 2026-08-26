@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Crafts & Digital Artwork Platform</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- 1. Header & Navigation Links -->
+    <header class="header-nav">
+        <a href="#" class="brand-logo">ARTISAN & PRINT</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#store">Store Page</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contacts">Contacts</a></li>
+                <li><a href="#dashboard" id="nav-dashboard-link" onclick="loadDashboardData()" style="display:none;">Seller Dashboard</a></li>
+                <li><a href="#" id="nav-auth-link">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. Home Hero Section (Rule of Thirds Design) -->
+    <section id="home" class="hero-container">
+        <div class="hero-content">
+            <h1>Handcrafted Keychains & Digital Art</h1>
+            <p>Discover unique, handmade keychains and high-resolution downloadable prints directly from independent creators.</p>
+            <!-- 3. Call to Action (CTA) -->
+            <a href="#store" class="cta-button">Explore Store Page</a>
+        </div>
+        <div>
+            <!-- Visual Focus Grid Accent -->
+            <img src="https://via.placeholder.com/400x500" alt="Featured Craft Artwork" style="width:100%; border-radius:8px;">
+        </div>
+    </section>
+
+    <!-- Features / Body Section -->
+    <section class="section-wrapper" style="background: white;">
+        <h2>Why Support Our Artisans?</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 1.5rem;">
+            <div>
+                <h3>100% Handcrafted</h3>
+                <p>Keychains are assembled with artisan care and designed for durability.</p>
+            </div>
+            <div>
+                <h3>Instant Digital Art</h3>
+                <p>High-resolution prints ready to download directly after payment confirmation.</p>
+            </div>
+            <div>
+                <h3>GCash Integration</h3>
+                <p>Easy, fast, and secure local checkout powered by PayMongo Philippines.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Section -->
+    <section id="store" class="section-wrapper">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Store Products</h2>
+            <button class="secondary-button" onclick="openModal('sell-modal')">Sell Your Art/Keychain</button>
+        </div>
+        <div id="product-catalog" class="product-grid">
+            <!-- Dynamic Injection from App.js -->
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section-wrapper" style="background: var(--white);">
+        <h2>User & Seller Dashboard</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+            <div>
+                <h3>Your Purchase History</h3>
+                <div id="bought-history" style="margin-top:1rem;">Loading...</div>
+            </div>
+            <div>
+                <h3>Your Sales History</h3>
+                <div id="sales-history" style="margin-top:1rem;">Loading...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="section-wrapper">
+        <h2>About Us</h2>
+        <p>We empower local artisans and digital artists by providing a seamless direct-to-consumer platform to sell unique keychains and prints.</p>
+    </section>
+
+    <!-- Contacts Section -->
+    <section id="contacts" class="section-wrapper" style="background: var(--white);">
+        <h2>Contact Us</h2>
+        <p>Support Email: support@artisanprint.com</p>
+        <p>Location: Manila, Philippines</p>
+    </section>
+
+    <!-- 4. Sitemap & 5. Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3 style="color:var(--bright-yellow);">ARTISAN & PRINT</h3>
+                <p style="color: #ccc; margin-top:0.5rem;">Combining tactile handcrafted goods with digital expression.</p>
+            </div>
+            <div>
+                <h4>Sitemap</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#store">Store</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contacts">Contacts</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal & Support</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Artisan & Print Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal (Login/Register with GCash) -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3>Account Access</h3>
+            <form id="auth-form" style="margin-top: 1rem;">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="auth-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" required>
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="auth-name">
+                </div>
+                <div class="form-group">
+                    <label>GCash Number (For Sellers/Payouts)</label>
+                    <input type="text" id="auth-gcash" placeholder="09XXXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="auth-is-register"> <label for="auth-is-register" style="display:inline;">Create new account?</label>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%;">Submit</button>
+                <button type="button" class="secondary-button" style="width: 100%; margin-top: 0.5rem;" onclick="closeModal('auth-modal')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sell Item Modal -->
+    <div id="sell-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3>List Your Item</h3>
+            <form id="sell-form" style="margin-top: 1rem;">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="prod-title" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="prod-category" required>
+                        <option value="keychain">Handcrafted Keychain</option>
+                        <option value="digital_art">Digital Artwork</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Price (PHP)</label>
+                    <input type="number" id="prod-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Image Link URL</label>
+                    <input type="url" id="prod-image" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="prod-desc" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%;">List Product</button>
+                <button type="button" class="secondary-button" style="width: 100%; margin-top: 0.5rem;" onclick="closeModal('sell-modal')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Review Submission Modal -->
+    <div id="review-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3>Submit Product Review</h3>
+            <form id="review-form" style="margin-top:1rem;">
+                <input type="hidden" id="review-product-id">
+                <div class="form-group">
+                    <label>Star Rating (1 to 5)</label>
+                    <select id="review-rating" required>
+                        <option value="5">5 Stars - Excellent</option>
+                        <option value="4">4 Stars - Good</option>
+                        <option value="3">3 Stars - Average</option>
+                        <option value="2">2 Stars - Poor</option>
+                        <option value="1">1 Star - Terrible</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Comment</label>
+                    <textarea id="review-comment" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width:100%;">Submit Review</button>
+                <button type="button" class="secondary-button" style="width: 100%; margin-top: 0.5rem;" onclick="closeModal('review-modal')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Voiceflow AI Chatbot Script -->
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: 'YOUR_VOICEFLOW_PROJECT_ID' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production'
+            });
+          }
+          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+
+    <!-- Application Engine Logic Script Import -->
+    <script type="module" src="../js/app.js"></script>
+</body>
+</html>
